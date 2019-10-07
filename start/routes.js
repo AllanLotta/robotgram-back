@@ -8,6 +8,8 @@ Route.post('sessions', 'SessionController.store')
 
 Route.get('/files/:id', 'FileController.show')
 Route.group(() => {
+  Route.get('users', 'RecomendedController.index')
+
   Route.post('/files', 'FileController.store')
 
   Route.resource('posts', 'PostController').apiOnly()
