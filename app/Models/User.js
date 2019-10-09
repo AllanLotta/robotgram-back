@@ -22,8 +22,12 @@ class User extends Model {
     return this.hasMany('App/Models/Post')
   }
 
+  following () {
+    return this.hasMany('App/Models/Follower', 'id', 'user_id')
+  }
+
   followers () {
-    return this.hasMany('App/Models/Follower')
+    return this.hasMany('App/Models/Follower', 'id', 'follower_id')
   }
 }
 

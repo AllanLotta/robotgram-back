@@ -4,8 +4,12 @@
 const Model = use('Model')
 
 class Follower extends Model {
-  user () {
-    return this.belongsTo('App/Models/User')
+  userFollowed () {
+    return this.belongsTo('App/Models/User', 'user_id', 'id')
+  }
+
+  userFollower () {
+    return this.belongsTo('App/Models/User', 'follower_id', 'id')
   }
 }
 

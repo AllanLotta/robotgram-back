@@ -11,7 +11,7 @@ Route.group(() => {
   Route.get('users', 'RecomendedController.index')
 
   Route.post('/files', 'FileController.store')
-
+  Route.get('/user/:user_id/posts', 'PostUserController.index')
   Route.resource('posts', 'PostController').apiOnly()
   Route.resource('user.follower', 'FollowerController').apiOnly()
   Route.get('/user/:user_id/follows', 'FollowedController.index')
