@@ -6,10 +6,23 @@ class FollowerController {
   async index ({ params }) {
     const followers = await Follower.query()
       .where('user_id', params.user_id)
-      .with('user')
       .fetch()
 
-    return followers
+    /**
+     * in followers i receive a object and i need to make it  a array
+     */
+    const getArray = Object.values(followers)[0]
+    const followsId = []
+
+    Object.values(getArray).forEach(Element => {
+      followsId.push(Element.follower_id)
+    })
+
+    const following = await Follower.query()
+      .whereIn('user_id', followsId)
+      .with('user')
+      .fetch()
+    return following
   }
 
   async store ({ params, request, auth }) {

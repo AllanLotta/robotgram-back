@@ -12,7 +12,7 @@ class PostController {
      * in followers i receive a object and i need to make it  a array
      */
     const getArray = Object.values(followers)[0]
-    const followersId = []
+    const followersId = [auth.user.id]
 
     Object.values(getArray).forEach(Element => {
       followersId.push(Element.follower_id)
@@ -22,6 +22,7 @@ class PostController {
       .with('user')
       .with('file')
       .whereIn('user_id', followersId)
+      .orderBy('created_at', 'desc')
       .fetch()
 
     return posts
